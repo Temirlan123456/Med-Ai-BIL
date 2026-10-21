@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Мед Аi — школьный медпункт</title>
+<style>
+:root{--bg:#5a0a1c;--bg2:#7a1229;--card:#6d1026;--line:#9a2a45;--tx:#fff3f5;--mut:#e3b3bd;--red:#ff2d3d;--g:#2fbf71;--y:#f5c431;--r:#ff3b3b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.logo{width:42px;height:42px;border-radius:12px;background:#fff;display:grid;place-items:center}
+.logo svg{width:28px;height:28px}
+h1{font-size:22px;margin:0}h1 span{color:var(--red);background:#fff;border-radius:6px;padding:0 5px;margin-left:4px}
+h2{font-size:18px;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
+input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--tx);font:inherit}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:12px 16px;background:var(--red);color:#fff;font-weight:600}
+button.sec{background:var(--bg2);border:1px solid var(--line)}
+.nav{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.nav button{flex:1;background:var(--bg2);border:1px solid var(--line);padding:10px 6px}
+.nav button.on{background:var(--red)}
+.hide{display:none!important}
+.msgs{max-height:48vh;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.m{padding:10px 12px;border-radius:14px;max-width:92%;white-space:pre-wrap}
+.m.u{align-self:flex-end;background:var(--red)}
+.m.a{align-self:flex-start;background:var(--bg2);border:1px solid var(--line)}
+.row{display:flex;gap:8px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.cat{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px 8px;text-align:center;font-size:16px}
+.cat b{display:block;font-size:30px}
+.zone{border-radius:12px;padding:10px 12px;margin:8px 0;border-left:6px solid}
+.zone.g{border-color:var(--g);background:rgba(47,191,113,.15)}
+.zone.y{border-color:var(--y);background:rgba(245,196,49,.15)}
+.zone.r{border-color:var(--r);background:rgba(255,59,59,.22)}
+.zone h3{margin:0 0 4px;font-size:15px}
+.zone p{margin:2px 0;font-size:14px}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-weight:700;font-size:13px;color:#111}
+.tag.g{background:var(--g)}.tag.y{background:var(--y)}.tag.r{background:var(--r);color:#fff}
+.note{font-size:12px;color:var(--mut);margin-top:8px}
+.sos{background:var(--r);color:#fff;border-radius:12px;padding:10px;margin-top:8px;font-weight:700}
+:root{--bg:#14030a;--bg2:rgba(255,255,255,.06);--card:rgba(255,255,255,.05);--line:rgba(255,120,140,.18);--mut:#c99aa6;--red:#ff2d45}
+body{background:radial-gradient(1000px 520px at 85% -10%,#6b0f2b 0,transparent 60%),radial-gradient(800px 500px at -10% 110%,#4a0a1e 0,transparent 55%),#14030a;background-attachment:fixed;min-height:100vh;letter-spacing:.01em}
+h1{font-size:24px;font-weight:800;letter-spacing:.02em}
+h1 span{background:linear-gradient(135deg,#ff2d45,#c8102e);color:#fff;border-radius:8px;padding:1px 8px;box-shadow:0 0 18px rgba(255,45,69,.55)}
+.logo{background:linear-gradient(135deg,#ff3b52,#b0102a);box-shadow:0 0 22px rgba(255,45,69,.6);width:46px;height:46px;border-radius:14px}
+.logo svg path{fill:#fff}
+.card{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08);padding:20px}
+input,select,textarea{background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:14px;transition:.2s}
+input:focus,select:focus{outline:0;border-color:#ff2d45;box-shadow:0 0 0 3px rgba(255,45,69,.25)}
+button{background:linear-gradient(135deg,#ff3b52,#c8102e);box-shadow:0 6px 20px rgba(255,45,69,.35);border-radius:14px;transition:transform .15s,box-shadow .15s}
+button:active{transform:scale(.97)}
+.nav{background:rgba(0,0,0,.35);padding:5px;border-radius:18px;border:1px solid var(--line)}
+.nav button{background:transparent;border:0;box-shadow:none;color:var(--mut);border-radius:14px}
+.nav button.on{background:linear-gradient(135deg,#ff3b52,#c8102e);color:#fff;box-shadow:0 4px 16px rgba(255,45,69,.4)}
+.m{border-radius:18px}
+.m.u{background:linear-gradient(135deg,#ff3b52,#c8102e)}
+.m.a{background:rgba(255,255,255,.06);border:1px solid var(--line)}
+.cat{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.02));border-radius:20px;padding:20px 8px;font-weight:600;transition:.2s;cursor:pointer}
+.cat:hover,.cat:active{transform:translateY(-3px);border-color:#ff2d45;box-shadow:0 8px 28px rgba(255,45,69,.3)}
+.ic{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:16px;background:radial-gradient(circle at 30% 20%,rgba(255,80,100,.35),rgba(255,45,69,.08));border:1px solid rgba(255,90,110,.35);color:#ff4d62;margin-bottom:8px;box-shadow:0 0 18px rgba(255,45,69,.25)}
+.ic svg{width:28px;height:28px}
+h2 .ic{width:36px;height:36px;border-radius:11px;margin:0 8px 0 0;vertical-align:middle}
+h2 .ic svg{width:20px;height:20px}
+.zone{border-radius:16px;border:1px solid;border-left-width:5px;backdrop-filter:blur(6px)}
+.zone.g{border-color:rgba(47,191,113,.55);background:linear-gradient(90deg,rgba(47,191,113,.2),rgba(47,191,113,.04))}
+.zone.y{border-color:rgba(245,196,49,.55);background:linear-gradient(90deg,rgba(245,196,49,.2),rgba(245,196,49,.04))}
+.zone.r{border-color:rgba(255,59,59,.7);background:linear-gradient(90deg,rgba(255,59,59,.3),rgba(255,59,59,.06));box-shadow:0 0 24px rgba(255,59,59,.2)}
+.sos{background:linear-gradient(135deg,#ff3b3b,#a8071a);border-radius:14px;display:flex;gap:10px;align-items:center;box-shadow:0 0 24px rgba(255,59,59,.45);animation:pl 2s infinite}
+.sos svg{width:24px;height:24px;flex:none}
+@keyframes pl{50%{box-shadow:0 0 38px rgba(255,59,59,.8)}}
+.tag{box-shadow:0 0 12px currentColor}
+.msgs::-webkit-scrollbar{width:4px}.msgs::-webkit-scrollbar-thumb{background:#ff2d45;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo"><svg viewBox="0 0 24 24"><path fill="#ff2d3d" d="M9 2h6v7h7v6h-7v7H9v-7H2V9h7z"/></svg></div><h1>Мед<span>Аi</span></h1></header>
+
+<section id="reg" class="card">
+<h2>Регистрация</h2>
+<label>Имя и фамилия</label><input id="rn" placeholder="Иван Иванов">
+<label>Класс</label><input id="rc" placeholder="8Б">
+<label>Кто вы</label><select id="rr"><option value="s">Ученик</option><option value="d">Директор школы</option></select>
+<div id="pw" class="hide"><label>Пароль директора</label><input id="rp" type="password"></div><p id="re" class="note" style="color:#ff7b8a"></p>
+<p style="margin-top:14px"><button id="rb" style="width:100%">Войти</button></p>
+</section>
+
+<main id="app" class="hide">
+<div class="nav"><button data-t="chat" class="on">ИИ‑помощник</button><button data-t="cats">Симптомы</button><button data-t="dir" id="dirBtn" class="hide">Директор</button></div>
+
+<section id="chat" class="card">
+<h2>Опишите, что беспокоит</h2>
+<div class="msgs" id="msgs"><div class="m a">Привет! Напиши, что болит или что тебя беспокоит, например: «живот болит». Я определю зону опасности.</div></div>
+<div class="row"><input id="q" placeholder="Например: болит живот"><button id="send">→</button></div>
+<div class="note">Мед Аi не заменяет врача. Жалобы автоматически отправляются директору школы.</div>
+</section>
+
+<section id="cats" class="hide">
+<div class="card"><h2>Что беспокоит?</h2><div class="grid" id="grid"></div></div>
+<div id="detail"></div>
+</section>
+
+<section id="dir" class="hide card">
+<h2>Жалобы учеников</h2><div id="list"><p class="note">Загрузка…</p></div>
+</section>
+</main>
+</div>
+
+<script>
+const CATS={
+"Живот":{i:"🤢",g:[["Газы, вздутие","Тёплое питьё, покой; по необходимости — по инструкции симетикон."],["Лёгкое переедание","Не есть пару часов, пить воду."]],y:[["Гастрит","Нужен осмотр врача; до этого — лёгкая пища."],["Пищевое отравление","Много питья, регидратация (по инструкции), врач."]],r:[["Аппендицит","Острая боль справа внизу, тошнота, температура."],["Перитонит, «твёрдый» живот","Не есть, не пить, не принимать обезболивающие."]]},
+"Голова":{i:"🤕",g:[["Усталость, недосып","Отдых, вода, свежий воздух."],["Обезвоживание","Выпить воды, немного посидеть в тени."]],y:[["Мигрень","Тёмная тихая комната; препараты — по назначению врача."],["Скачок давления","Измерить давление, обратиться к врачу."]],r:[["Менингит","Сильная боль, температура, ригидность шеи, сыпь."],["Инсульт / тяжёлая травма головы","Перекос лица, речь нарушена, потеря сознания."]]},
+"Зубы":{i:"🦷",g:[["Чувствительность эмали","Паста для чувствительных зубов, не пить холодное."]],y:[["Кариес","Запись к стоматологу."],["Пульпит","Ночная пульсирующая боль — к стоматологу в ближайшие дни."]],r:[["Абсцесс, отёк лица","Отёк щеки, температура, трудно глотать."]]},
+"Горло":{i:"😷",g:[["Першение, простуда","Тёплое питьё, полоскание, покой."]],y:[["Ангина","Боль при глотании, налёт, температура — к врачу."],["Ларингит","Охриплость, лающий кашель."]],r:[["Отёк гортани","Трудно дышать или глотать."]]},
+"Грудь и дыхание":{i:"🫁",g:[["Лёгкий кашель при ОРВИ","Тёплое питьё, проветривание."]],y:[["Бронхит","Затяжной кашель — к врачу."]],r:[["Приступ астмы","Свистящее дыхание, не хватает воздуха."],["Боль в груди","Давящая боль, холодный пот, слабость."]]},
+"Температура":{i:"🌡️",g:[["До 37,5","Питьё, отдых, наблюдение."]],y:[["38–39","Постельный режим, жаропонижающее по инструкции, вызвать врача."]],r:[["Выше 39,5 или судороги","Вызвать скорую, обтирание прохладной водой."]]},
+"Кожа":{i:"🩹",g:[["Лёгкое раздражение","Умыть, увлажняющий крем."]],y:[["Аллергия, дерматит","Исключить аллерген, антигистаминное по инструкции, врач."]],r:[["Отёк Квинке, анафилаксия","Отёк губ/лица, одышка, крапивница по телу."]]},
+"Травмы":{i:"🦴",g:[["Ушиб","Холод на 15 минут, покой."]],y:[["Растяжение","Зафиксировать, холод, показаться травматологу."]],r:[["Перелом, сильное кровотечение","Не двигать, наложить жгут/повязку при кровотечении."]]}
+};
+const ZN={g:["Зелёная зона","не опасно"],y:["Жёлтая зона","средней тяжести"],r:["Красная зона","немедленная помощь!"]};
+const $=s=>document.querySelector(s);
+const IC={"Живот":"M8 3c-2 3 1 5 3 7s1 4-1 6a4 4 0 0 0 7 3c3-3 2-7 0-10-1-2-1-4-3-6z","Голова":"M12 3a6 6 0 0 0-6 6c0 2 1 3 1 5v3h7v-3l2-1-2-1v-2a6 6 0 0 0-2-7z","Зубы":"M7 4c-2 0-3 2-3 4 0 4 2 5 2 8 0 2 1 4 2 4s1-3 2-3 1 3 2 3 2-2 2-4c0-3 2-4 2-8 0-2-1-4-3-4-2 0-2 1-3 1S9 4 7 4z","Горло":"M12 3s6 6 6 11a6 6 0 0 1-12 0c0-5 6-11 6-11z","Грудь и дыхание":"M12 4v8M12 8c-2 0-6 2-6 8 0 2 2 3 4 2 1-1 2-2 2-4M12 8c2 0 6 2 6 8 0 2-2 3-4 2-1-1-2-2-2-4","Температура":"M10 14V5a2 2 0 0 1 4 0v9a4 4 0 1 1-4 0zM12 9v7","Кожа":"M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z","Травмы":"M5 14l9-9a3 3 0 0 1 5 5l-9 9a3 3 0 0 1-5-5zM10 9l5 5"};
+const ico=k=>`<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="${IC[k]}"/></svg></span>`;
+const PULSE='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg>';
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let me=null,uid=null,isDir=false,mine=[],PW="";
+const sampleFn={json:async p=>{const x=await fetch("/api?a=chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:p})});if(!x.ok)throw new Error("chat");return x.json()}};
+
+try{me=JSON.parse(localStorage.getItem("medai_me")||"null")}catch(e){}
+if(me&&me.r!=="d")start();
+$("#rr").onchange=()=>$("#pw").classList.toggle("hide",$("#rr").value!=="d");
+$("#rb").onclick=async()=>{
+ const n=$("#rn").value.trim(),c=$("#rc").value.trim();
+ if(!n){$("#rn").focus();return}
+ let prev=null;try{prev=JSON.parse(localStorage.getItem("medai_me")||"null")}catch(e){}
+ me={n,c,r:$("#rr").value,id:(prev&&prev.id)||(Date.now().toString(36)+Math.random().toString(36).slice(2,8))};
+ if(me.r==="d"){
+  PW=$("#rp").value;
+  try{const x=await fetch("/api?a=complaint",{headers:{"x-pass":PW}});if(!x.ok)throw 0;isDir=true}
+  catch(e){$("#re").textContent="Неверный пароль директора";return}
+ }
+ try{localStorage.setItem("medai_me",JSON.stringify(me))}catch(e){}
+ start();
+};
+function start(){
+ uid=me.id;
+ $("#reg").classList.add("hide");$("#app").classList.remove("hide");
+ if(isDir){$("#dirBtn").classList.remove("hide");loadDir();setInterval(loadDir,15000)}
+ buildGrid();
+}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".nav button").forEach(x=>x.classList.toggle("on",x===b));
+ ["chat","cats","dir"].forEach(t=>$("#"+t).classList.toggle("hide",t!==b.dataset.t));
+});
+
+function add(t,c){const d=document.createElement("div");d.className="m "+c;d.textContent=t;$("#msgs").append(d);$("#msgs").scrollTop=1e9;return d}
+function zoneHtml(z,title,list){return `<div class="zone ${z}"><h3>${title}</h3>${list}</div>`}
+
+async function ask(){
+ const t=$("#q").value.trim();if(!t)return;$("#q").value="";add(t,"u");
+ if(!sampleFn){add("ИИ сейчас недоступен. Выберите проблему во вкладке «Симптомы».","a");send(t,"?","");return}
+ const w=add("Анализирую…","a");
+ try{
+  const r=await sampleFn.json("Ты школьный медицинский помощник «Мед Аi». Ученик пишет жалобу: «"+t+"». Ответь ТОЛЬКО JSON без markdown: {\"zone\":\"green|yellow|red\",\"summary\":\"1 фраза\",\"conditions\":[\"2-4 возможных состояния\"],\"medicines\":[\"безрецептурные средства БЕЗ дозировок, 'по инструкции'; пусто при red\"],\"advice\":\"что делать сейчас, 1-2 фразы\"}. red = угроза жизни, нужна скорая 103/112. Не ставь диагноз, пиши по-русски.");
+  const z={green:"g",yellow:"y",red:"r"}[r.zone]||"y";
+  w.remove();
+  const d=document.createElement("div");d.className="m a";
+  d.innerHTML=`<span class="tag ${z}">${ZN[z][0]} — ${ZN[z][1]}</span><p>${esc(r.summary)}</p><p><b>Возможно:</b> ${esc((r.conditions||[]).join(", "))}</p>`
+   +((r.medicines||[]).length?`<p><b>Средства (по инструкции, лучше с врачом/родителями):</b> ${esc(r.medicines.join(", "))}</p>`:"")
+   +`<p>${esc(r.advice)}</p>`+(z==="r"?`<div class="sos">${PULSE}<span>Немедленно вызовите скорую 103 / 112 и сообщите учителю или медсестре!</span></div>`:"")
+   +`<div class="note">✓ Жалоба отправлена директору</div>`;
+  $("#msgs").append(d);$("#msgs").scrollTop=1e9;
+  send(t,z,r.summary+" | "+(r.conditions||[]).join(", "));
+ }catch(e){w.textContent="Не получилось проанализировать. Попробуйте ещё раз или выберите проблему во вкладке «Симптомы».";}
+}
+$("#send").onclick=ask;$("#q").onkeydown=e=>{if(e.key==="Enter")ask()};
+
+async function send(text,zone,info){
+ try{
+  const x=await fetch("/api?a=complaint",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:me.n,cls:me.c,text,zone,info,uid})});
+  return x.ok;
+ }catch(e){return false}
+}
+
+function buildGrid(){
+ const g=$("#grid");g.innerHTML="";
+ Object.keys(CATS).forEach(k=>{const b=document.createElement("div");b.className="cat";b.innerHTML=`${ico(k)}<div>${k}</div>`;b.onclick=()=>show(k);g.append(b)});
+}
+function show(k){
+ const c=CATS[k];
+ const blk=(z,l)=>l.length?zoneHtml(z,"● "+ZN[z][0]+" — "+ZN[z][1],l.map(x=>`<p><b>${esc(x[0])}.</b> ${esc(x[1])}</p>`).join("")):"";
+ $("#detail").innerHTML=`<div class="card"><h2>${ico(k)}${k}</h2>${blk("g",c.g)}${blk("y",c.y)}${blk("r",c.r)}
+ <div class="sos">${PULSE}<span>Красная зона — немедленно звоните 103 / 112</span></div>
+ <p style="margin-top:12px"><button id="rep">Сообщить директору: «${k}»</button></p><div class="note" id="rs"></div></div>`;
+ $("#rep").onclick=async()=>{const ok=await send("Жалоба: "+k,"?","Выбрано в панели симптомов");$("#rs").textContent=ok?"✓ Жалоба отправлена директору":"Не удалось отправить, попробуйте ещё раз."};
+ $("#detail").scrollIntoView({behavior:"smooth"});
+}
+
+async function loadDir(){
+ try{
+  const x=await fetch("/api?a=complaint",{headers:{"x-pass":PW}});
+  if(!x.ok)throw 0;
+  const rows=(await x.json()).items||[];
+  $("#list").innerHTML=rows.length?rows.map(r=>{const z=["g","y","r"].includes(r.zone)?r.zone:"y";
+   return `<div class="zone ${z}"><h3>${esc(r.name)} · ${esc(r.cls)} <span class="tag ${z}">${ZN[z]?ZN[z][0]:"Жалоба"}</span></h3><p>${esc(r.text)}</p>${r.info?`<p style="color:var(--mut)">${esc(r.info)}</p>`:""}<p class="note">${new Date(r.at).toLocaleString("ru-RU")}</p></div>`}).join(""):'<p class="note">Пока жалоб нет.</p>';
+ }catch(e){$("#list").innerHTML='<p class="note">Нет доступа к жалобам.</p>'}
+}
+</script>
+</body>
+</html>
